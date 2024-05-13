@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Faculty Dashboard</title>
+    <link rel="stylesheet" href="/styles/facultyPage.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/instascan/2.0.0-rc.4/instascan.min.js"></script> -->
+</head>
+
+<body>
+
+    <!-- <div class="sidebar">
+        Sidebar content 
+        <ul>
+            <h1>Attendify</h1>
+            <li><a href="#">Scanner</a></li>
+            <li><a href="#">Register Students</a></li>
+            <li><a href="#">Attendance</a></li>
+        </ul>
+    </div> -->
+
+    <div class="dashboard">
+        <nav class="navbar">
+            <div class="welcome-note">
+                <!-- <h3>Welcome, <%= username%></h3> -->
+                <h2>Campus Connect</h2>
+
+                <a href="/login" class="logout-btn">Logout</a>
+            </div>
+        </nav>
+
+        <div class="card-container">
+            <div class="card scanner-card" id="scannerCard">
+                <i class="fas fa-qrcode"></i>
+                <p>Scanner</p>
+            </div>
+            <div class="card register-card">
+                <i class="fas fa-user-plus"></i>
+                <p>Register Students</p>
+            </div>
+            <div class="card attendance-card" id="attendanceCard">
+                <i class="fas fa-list-alt"></i>
+                <p>Attendance</p>
+            </div>
+        </div>
+
+        <!-- Default content for registration -->
+        <div class="registration-section">
+            <h2>Student Registration</h2>
+            <!-- <input type="text" id="filterInput" placeholder="Filter by name, ID, or status"> -->
+            <!-- <button id="selectButton">Select</button> -->
+            <table id="studentsTable">
+                <thead>
+                    <tr>
+                        <th>Sr.No</th>
+                        <th>Student Name</th>
+                        <th>Student ID</th>
+                        <th>Email</th>
+                        <!-- <th>Status</th> -->
+                        <th>Action</th>
+                        <th>Delete</th>
+                        <!-- <th>
+                            <input type="checkbox" id="selectAllCheckbox" class="bulkCheckbox">
+                        </th> -->
+                    </tr>
+                </thead>
+                <tbody id="studentsTableBody"></tbody>
+            </table>
+        </div>
+
+        <div class="scanner-section" style="display: none;">
+            <div id="notification" class="alert" role="alert">
+                <!-- Notification content will be added dynamically -->
+            </div>
+            <div class="controls">
+                <div class="control-box">
+                    <div class="dropdown">
+                        <!-- <label for="subjectDropdown">Select Subject</label> -->
+                        <select id="subjectDropdown" class="dropbtn">
+                            <option value="" disabled selected>Select Subject</option>
+                            <option value="Physics">Physics</option>
+                            <option value="Chemistry">Chemistry</option>
+                            <option value="Maths">Maths</option>
+                            <option value="Biology">Biology</option>
+                            <option value="English">English</option>
+                        </select>
+                    </div>
+                    <button id="startButton" class="scan-button">Start</button>
+                    <!-- <button id="pauseButton" class="scan-button">Pause</button>
+                    <button id="resumeButton" class="scan-button">Resume</button> -->
+                    <button id="endClassButton" class="end-button">End Class</button>
+                </div>
+            </div>
+            <div>
+                <video id="video" autoplay style="width: 100%; height: auto;"></video>
+                <canvas id="canvas" style="display: none;"></canvas>
+                <p id="scannedData"></p>
+            </div>
+        </div>
+
+        <div class="attendance-section" style="display: none;">
+            <div id="subjectSelection">
+                <label for="subject">Select Subject:</label>
+                <select id="subject">
+                    <option value="Maths">Maths</option>
+                    <option value="Biology">Biology</option>
+                    <option value="English">English</option>
+                    <option value="Chemistry">Chemistry</option>
+                    <option value="Physics">Physics</option>
+                </select>
+                <button onclick="fetchAttendance()">Show Attendance</button>
+            </div>
+
+            <div id="attendanceContainer">
+                <!-- Place this loader inside the attendanceContainer -->
+
+            </div>
+            <div id="loader" class="loader"></div>
+
+            <!-- Content for attendance -->
+        </div>
+
+    </div>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/instascan/2.0.0-rc.4/instascan.min.js"></script> -->
+
+
+    <script>
+        // document.addEventListener('DOMContentLoaded', function () {
+        //     const showLoader = () => {
+        //         const gola = document.getElementById('loader');
+        //         // console.log(gola);
+        //         gola.style.display = 'block';
+        //     }
+        //     const hideLoader = () => {
+        //         const gola = document.getElementById('loader');
+        //         // console.log(gola);
+        //         gola.style.display = 'none';
+        //     }
+        // });
+    </script>
+    <script src="/scripts/loader.js"></script>
+    <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
+    <script src="/scripts/scanner.js"></script>
+
+
+    <!-- <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script> -->
+</body>
+
+</html>

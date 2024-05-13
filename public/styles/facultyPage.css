@@ -1,0 +1,478 @@
+/* facultyPage.css
+
+/* ...Your existing CSS... */
+/* Reset styles and basic layout */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+}
+/* body{
+  display: flex;
+  justify-content: center;
+} */
+
+/* Sidebar styles */
+.sidebar {
+  width: 250px;
+  height: 100vh;
+  background-color: #333;
+  color: #fff;
+  float: left;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 20px;
+}
+
+.sidebar ul li {
+  margin-bottom: 10px;
+}
+
+.sidebar ul li a {
+  text-decoration: none;
+  color: #fff;
+}
+
+/* Dashboard styles */
+.dashboard {
+  /* margin-left: 250px; */
+  background: -webkit-linear-gradient(left, #003366, #004080, #0059b3, #0073e6);
+
+  /* Match sidebar width */
+}
+
+.navbar {
+  color: #fff;
+  padding: 25px;
+  border-bottom: 1px solid #ccc;
+}
+.logout-btn {
+  margin-right: 20px;
+  text-decoration: none;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #f44336;
+  color: white;
+  float: right;
+  margin-top:-25px;
+}
+
+.logout-btn:hover {
+  background-color: #d32f2f;
+}
+.card-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.card {
+  width: 250px;
+  height: 200px;
+  background-color: #f0f0f0;
+  border-radius: 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  margin: 10px;
+}
+
+
+
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+}
+
+.card i {
+  font-size: 3em;
+  margin-bottom: 10px;
+}
+
+.card p {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.form-inner form .btn {
+  margin-top: 15px;
+  margin-bottom: 20px;
+}
+
+.form-inner form .btn .btn-layer {
+  /* background: -webkit-linear-gradient(right, #003366, #004080, #0059b3, #0073e6); */
+  border-radius: 15px;
+}
+
+.form-inner form .btn input[type="submit"] {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+table {
+  width: 97%;
+  border-collapse: collapse;
+  margin-top: 20px;
+ 
+  border:2px solid black;
+  
+  
+  
+}
+
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+td{
+  /* box-shadow: 1px 1px 1px 1px blue; */
+  border:1px solid blue;
+
+}
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+tr:nth-child(odd) {
+  background-color: #f5f5f5; /* Lighter shade than the even rows */
+}
+tr:hover {
+  background-color: #eaeaea; /* Change to a slightly different shade on hover */
+}
+/* Style for the registration toggle button */
+.registration-section h2{
+  color: white;
+  text-align: center;
+  margin-top:5px;
+  /* width: 100%; */
+  
+}
+.registration-section{
+   display: block;
+   margin-left:2.2%;
+  
+  /* border:4px solid red; */
+
+}
+.registration-toggle-btn {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #4CAF50;
+  color: white;
+}
+
+.registration-toggle-btn:hover {
+  background-color: #45a049;
+}
+
+.scanner-section {
+  /* display: none; Initially hide the scanner section */
+  display: none;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.scanner-section video {
+  width: 80%;
+  max-width: 600px;
+  height: auto;
+  border: 2px solid #333;
+  border-radius: 8px;
+}
+
+.scanner-section #canvas {
+  display: none;
+  width: 80%;
+  max-width: 600px;
+  height: auto;
+  border: 2px solid #333;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+.scanner-section #scannedData {
+  margin-top: 20px;
+  font-size: 18px;
+  color:white;
+}
+
+.scanner-section div {
+  margin-top: 10px;
+}
+
+/* Update button styles */
+.scan-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+#startButton {
+  background-color: blue;
+  color: white;
+}
+
+#pauseButton {
+  background-color: red;
+  color: white;
+}
+
+#resumeButton {
+  background-color: green;
+  color: white;
+}
+
+.end-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  margin: 5px;
+  cursor: pointer;
+  background-color: #f44336;
+  color: white;
+}
+
+/* Layout for control box */
+.control-box {
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  display: inline-block;
+}
+
+/* Confirmation dialog styles */
+.confirmation-modal {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  z-index: 9999;
+}
+
+.modal-buttons {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.modal-buttons button {
+  padding: 5px 10px;
+  margin: 0 5px;
+}
+/* Dropdown styles */
+.dropbtn {
+  background-color: #3498db;
+  color: white;
+  padding: 10px 15px;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  border-radius: 5px;
+}
+
+.dropdown-content li {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+.show {
+  display: block;
+}
+
+/* Style the table */
+.attendance-section table {
+  border-collapse: collapse;
+  width: 90%;
+  margin-bottom: 20px;
+  margin-left:5%;
+}
+
+.attendance-section table th, table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+/* Style the table header */
+.attendance-section table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+/* Style table rows */
+.attendance-section table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.attendance-section table tr:hover {
+  background-color: #f1f1f1;
+}
+.attendance-section label {
+  margin-right: 10px;
+  color: white;
+}
+
+.attendance-section select {
+  padding: 5px;
+  font-size: 16px;
+}
+
+/* Style for the button */
+.attendance-section button {
+  padding: 8px 15px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  margin:10px;
+}
+
+.attendance-section button:hover {
+  background-color: #45a049;
+}
+#subjectSelection{
+  /* border:2px solid purple; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.notification {
+  display: none;
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #28a745;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  z-index: 1000;
+}
+
+.notification.show {
+  display: block;
+  animation: fadeOut 3s ease-in-out;
+}
+
+@keyframes fadeOut {
+  0% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { opacity: 0; }
+}
+.alert {
+  display: none;
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+}
+
+.alert-success {
+  color: #155724;
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+}
+
+.alert-danger {
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+}
+
+#attendanceContainer {
+  overflow-x: auto;
+  max-width: 100%; /* Adjust as needed */
+}
+.registration-delete-btn{
+  background-color: #ff6347; /* Set background color */
+  color: #fff; /* Set text color */
+  border: none; /* Remove borders */
+  padding: 8px 16px; /* Adjust padding as needed */
+  border-radius: 4px; /* Add some border-radius for rounded corners */
+  cursor: pointer; /* Show pointer cursor on hover */
+
+  /* Additional styles (hover, focus, etc.) */
+  /* Example: Change color on hover */
+  transition: background-color 0.3s ease;
+}
+.registration-delete-btn:hover {
+  background-color: #d63031; /* Change color on hover */
+}
+/* Add other styles as needed for different types of alerts */
+
+.bulkCheckbox {
+  display: none;
+}
+
+.showBulkCheckboxes .bulkCheckbox {
+  display: block;
+}
+/* CSS for the loader */
+.loader {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  position: absolute;
+  top: 75%;
+  left: 50%;
+  margin-top: -20px;
+  margin-left: -20px;
+  display: none;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

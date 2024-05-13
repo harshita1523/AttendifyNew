@@ -1,0 +1,41 @@
+log out ka feature add krna h and do not forget to erase the session ka data when u log out 
+also add high security password 
+email id exist bhi krti h ya nahi mtlb asli bhi hai ya nahi 
+forget password
+
+
+tchr interface 
+
+
+delete unregistered ✅
+or unregister ❌
+
+lets add filter option to the table and sort 
+filter by status unregistered and sort by order 
+add a button register all 
+special code for tchr afte loggin in (so that no student will be able to sign up as a teacher)
+handle mutilple clicks on the buttons which start the scanning process ❌ (page refreshed)
+
+pause and resume button error 
+only one table at a time ✅
+also add the subject name ❌
+
+agr kbi glti se same hi random number generate hogya toh ??
+jo id k liye use ho rha h 
+
+add lazy loading as well✅
+---------
+subject ✅
+multiple scans ✅
+display the data monthly
+
+--------------
+student interface 
+display the attendnace subject wise ✅
+graphical if possible ✅
+data wise as well
+
+---------
+admin panel bana kr 
+istchr wala code update krna hai 
+kyuki students should be forbidden for both faculty and student

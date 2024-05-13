@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Attendify</title>
+    <link rel="stylesheet" href="/styles/studentPage.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/instascan/2.0.0-rc.4/instascan.min.js"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/instascan/2.0.0-rc.4/instascan.min.js"
+      integrity="sha512-vybWo2QCh2P1jTLx7W50N3K08p8ed7VsDZDJ9Ro/gvBDG0+lusOVFwbA9zfgBOtndpDm8YYKiagvre3Fq43kSg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <style>
+      #qrcode {
+        height: "200px";
+        width: "200px";
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="heading">
+        <h1>Campus Connect!</h1>
+        <!-- <h1>Attendify!</h1> -->
+        <div class="logout-btn">
+          <a href="/login">Logout</a>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="welcome">
+          <h2 style="text-align: center">Welcome, <%= username %></h2>
+        </div>
+        <div class="student-info">
+          <div class="qr-code" id="QRCODE">
+            <img src="" id="imgdiv" height="200px" width="200px" />
+          </div>
+          <div
+            class="unregistered-message"
+            id="unregisteredMessage"
+            style="display: none"
+          >
+            <!-- Message for unregistered students -->
+            <p>Please register with the teacher to access the QR code.</p>
+          </div>
+
+          <h3>Student Information</h3>
+          <ul>
+            <li>
+              <i class="fas fa-user"></i>
+              <%= username %>
+            </li>
+            <li>
+              <i class="fas fa-id-badge"></i>
+              <%= id %>
+            </li>
+            <li>
+              <i class="fas fa-envelope"></i>
+              <%= email %>
+            </li>
+            <!-- Add other student details here -->
+          </ul>
+        </div>
+        <div class="dashboard-container">
+          <!-- <h2>Attendance Data</h2> -->
+          <table border="1">
+            <thead>
+              <tr>
+                <th>Subject</th>
+                <th>Attended Classes</th>
+                <th>Attendance Dates</th>
+              </tr>
+            </thead>
+            <tbody id="attendance-table-body"></tbody>
+          </table>
+
+          <!-- <h2>Total Classes</h2> -->
+          <table border="1">
+            <thead>
+              <tr>
+                <th>Subject</th>
+                <th>Total Days</th>
+              </tr>
+            </thead>
+            <tbody id="total-classes-table-body"></tbody>
+          </table>
+
+          <div class="chart-container">
+            <canvas id="attendance-chart"></canvas>
+          </div>
+          <div class="subject-details">
+            <h2>Subject Details</h2>
+            <ul id="subject-details-list"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+
+
+        const bhaystatus =<%= status %>;
+        const studentData = {
+            id: '<%= id %>',
+            username: '<%= username %>',
+            email: '<%= email %>',
+            status: '<%= status %>', //is in string not boolean here
+            attendance: {
+                totalClasses: "20",
+                attendedClasses: "15",
+                percentage: "75",
+            }
+        };
+        // function generateQr(){
+        //   const userCode = "<%= id %>";
+        //   const qrCodeDiv = document.querySelector('#imgdiv');
+        //   console.log("qrCodeDiv: ",qrCodeDiv)
+        //   console.log(userCode)
+        //   qrCodeDiv.src=`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${userCode}`;
+
+        // }
+        document.addEventListener('DOMContentLoaded', (event) => {
+
+        const userCode = "<%= id %>";
+        const qrCodeDiv = document.querySelector('#imgdiv');
+        qrCodeDiv.src=`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${userCode}`;
+        console.log(bhaystatus)
+        const studentStatus = bhaystatus;
+        const unregisteredMessageDiv = document.getElementById('unregisteredMessage');
+        if (studentStatus === false) {
+            qrCodeDiv.style.display = 'none'; // Hide QR code if status is false
+            unregisteredMessageDiv.style.display = 'block';
+        }
+        else{
+            qrCodeDiv.style.display = 'block'; // Display QR code for verified students
+            unregisteredMessageDiv.style.display = 'none';
+        }
+
+        })
+      //   document.addEventListener('DOMContentLoaded', (event) => {
+            // const studentStatus = `${studentStatus}`;// Assuming this retrieves a boolean
+          //   const studentStatus = bhaystatus;// Assuming this retrieves a boolean
+            // console.log(studentStatus); // Log the retrieved status
+          //   const studentId = "<%= id %>";
+          //   // const studentName ="<%=username%>";
+
+          //   const unregisteredMessageDiv = document.getElementById('unregisteredMessage');
+
+          //   if (studentStatus === false) {
+          //       qrCodeDiv.style.display = 'none'; // Hide QR code if status is false
+          //       unregisteredMessageDiv.style.display = 'block'; // Display message for unregistered students
+          //   } else {
+
+
+              //   console.log('userCode:', userCode);
+              //   new QRCode(document.getElementById("qrcode"), {
+
+              //       text: userCode,
+              //       width: 200,
+              //       height: 200
+              //   }).then(console.log('userCode:', userCode));
+
+          //       qrCodeDiv.style.display = 'block'; // Display QR code for verified students
+          //       unregisteredMessageDiv.style.display = 'none'; // Hide the message if student is registered
+          //   }
+      //   });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <script src="scripts/studentPage.js"></script>
+  </body>
+</html>

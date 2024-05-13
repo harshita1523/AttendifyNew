@@ -1,0 +1,304 @@
+<!-- views/login.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="/styles/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+
+</head>
+
+<body>
+    <% if (errorMessage) { %>
+        <div id="alert" class="alert">
+            <p><%= errorMessage %></p>
+        </div>
+    <% } %>
+    
+    
+    <!-- <div class="login-status" id="loginStatus">
+        <i class="fas" id="statusIcon"></i>
+        <p id="statusMessage"></p>
+    </div> -->
+    <h2 class="headingcc">Attendify</h2>
+    <div class="wrapper">
+        <div class="title-text">
+            <div class="title login">Login Form</div>
+            <div class="title signup">Signup Form</div>
+        </div>
+        <div class="form-container">
+            <div class="slide-controls">
+                <input type="radio" name="slide" id="login" checked>
+                <input type="radio" name="slide" id="signup">
+                <label for="login" class="slide login">Login</label>
+                <label for="signup" class="slide signup">Signup</label>
+                <div class="slider-tab"></div>
+            </div>
+            <div class="form-inner">
+                <form action="/login" method="POST" class="login" id="login">
+                    <div class="field">
+                        <input type="text" name="email" placeholder="Email Address" required>
+                    </div>
+                    <div class="field">
+                        <input type="password" name="password" placeholder="Password" required>
+                    </div>
+
+
+
+                    <!-- <div class="pass-link"><a href="#">Forgot password?</a></div> -->
+                    <div class="field btn">
+                        <div class="btn-layer"></div>
+                        <input type="submit" value="Login">
+                    </div>
+                    <div class="signup-link">Not a member? <a href="">Signup now</a></div>
+                </form>
+                <form id="user-form" action="/createUser" method="POST">
+                    <div class="field">
+                        <input type="text" placeholder="Full Name" name="name" required>
+                    </div>
+                    <div class="field">
+                        <input type="email" placeholder="Email Address" name="email" required>
+                    </div>
+                    <div class="field">
+                        <input type="password" id="password" placeholder="Password" name="password" required>
+                    </div>
+                    <div class="field">
+                        <input type="password" id="confirmPassword" placeholder="Confirm password" required>
+                        <small id="passwordError" class="error-text" style="display: none; color: red;">Passwords don't
+                            match</small>
+                    </div>
+                    <div class="role">
+                        <label>Role: </label>
+                        <div class=" role">
+                            <input type="radio" id="faculty" name="role" value="faculty" required>
+                            <label for="faculty">Faculty</label>
+                        </div>
+                        <div class=" role">
+                            <input type="radio" id="student" name="role" value="student" required>
+                            <label for="student">Student</label>
+                        </div>
+                    </div>
+                    <div class="field btn">
+                        <div class="btn-layer"></div>
+                        <input type="submit" value="Signup" id="submitButton" disabled>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        const loginText = document.querySelector(".title-text .login");
+        const loginForm = document.querySelector("form.login");
+        const loginBtn = document.querySelector(".slide.login");
+        const signupBtn = document.querySelector(".slide.signup");
+        const signupLink = document.querySelector(".signup-link a");
+
+        signupBtn.addEventListener('click', () => {
+            loginForm.style.marginLeft = "-50%";
+            loginText.style.marginLeft = "-50%";
+        });
+
+        loginBtn.addEventListener('click', () => {
+            loginForm.style.marginLeft = "0%";
+            loginText.style.marginLeft = "0%";
+        });
+
+        signupLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            signupBtn.click();
+        });
+
+        const form = document.getElementById('user-form');
+        const loginform = document.querySelector(".login");
+
+        loginform.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const email = loginform.elements['email'].value;
+            const password = loginform.elements['password'].value;
+
+            const userData = {
+                email: email,
+                password: password
+            };
+            
+            try {
+                const response = await fetch('/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(userData),
+                });
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log(data);
+                    if (data.login === false) {
+
+                        // Handle specific condition for login failure
+                        // showLoginFailure('Invalid email or password');
+                    } else {
+                        // Handle other conditions if needed
+                        // showLoginFailure('Login failed');
+                    }
+
+                } else {
+                    // Handle non-200 HTTP status (e.g., 401 for unauthorized)
+                    showLoginFailure();
+                }
+            } catch (error) {
+                console.error('Error during login:', error);
+                showLoginFailure();
+            }
+        });
+
+        const passwordField = document.getElementById('password');
+        const confirmPasswordField = document.getElementById('confirmPassword');
+        const passwordError = document.getElementById('passwordError');
+        const submitButton = document.getElementById('submitButton');
+
+        function validatePasswords() {
+            const password = passwordField.value;
+            const confirmPassword = confirmPasswordField.value;
+
+            if (password !== confirmPassword) {
+                passwordError.style.display = 'block';
+                submitButton.disabled = true;
+            } else {
+                passwordError.style.display = 'none';
+                submitButton.disabled = false;
+            }
+        }
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            form.submit();
+        });
+
+        confirmPasswordField.addEventListener('input', validatePasswords);
+        passwordField.addEventListener('input', validatePasswords);
+
+        
+
+        
+        setTimeout(function() {
+            var alertElement = document.getElementById('alert');
+            alertElement.style.display = 'none';
+        }, 2000);
+
+    </script>
+        
+    <!-- <script>
+        const loginText = document.querySelector(".title-text .login");
+        const loginForm = document.querySelector("form.login");
+        const loginBtn = document.querySelector(".slide.login");
+        const signupBtn = document.querySelector(".slide.signup");
+        const signupLink = document.querySelector(".signup-link a");
+        signupBtn.onclick = (() => {
+            loginForm.style.marginLeft = "-50%";
+            loginText.style.marginLeft = "-50%";
+        });
+        loginBtn.onclick = (() => {
+            loginForm.style.marginLeft = "0%";
+            loginText.style.marginLeft = "0%";
+        });
+        signupLink.onclick = (() => {
+            signupBtn.click();
+            return false;
+        });
+        const form = document.getElementById('user-form');
+        const loginform = document.querySelector(".login");
+
+        loginform.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const email = loginform.elements['email'].value;
+            const password = loginform.elements['password'].value;
+            // console.log("loginejs: ",email,password);
+            const userData = {
+                email: email,
+                password: password
+            };
+
+            try {
+                const response = await fetch('/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(userData),
+                }).then(response => {
+                    if (response.ok) {
+
+                        showLoginSuccess();
+
+                    } else {
+                        showLoginFailure();
+                    }
+                })
+                    .catch(error => {
+                        console.error('Error adding attendance:', error);
+                        // Handle any fetch errors, if needed
+                    });
+            }
+        });
+
+        const passwordField = document.getElementById('password');
+        const confirmPasswordField = document.getElementById('confirmPassword');
+        const passwordError = document.getElementById('passwordError');
+        const submitButton = document.getElementById('submitButton');
+
+        function validatePasswords() {
+            const password = passwordField.value;
+            const confirmPassword = confirmPasswordField.value;
+
+            if (password !== confirmPassword) {
+                passwordError.style.display = 'block';
+                submitButton.disabled = true;
+            } else {
+                passwordError.style.display = 'none';
+                submitButton.disabled = false;
+            }
+        }
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            form.submit();
+        });
+
+        confirmPasswordField.addEventListener('input', validatePasswords);
+        passwordField.addEventListener('input', validatePasswords);
+
+        const loginStatus = document.getElementById('loginStatus');
+        const statusIcon = document.getElementById('statusIcon');
+        const statusMessage = document.getElementById('statusMessage');
+
+        function showLoginSuccess() {
+            loginStatus.classList.add('login-success');
+            statusIcon.classList.add('fa-check-circle');
+            statusMessage.textContent = 'Login Successful';
+            setTimeout(() => hideLoginStatus(), 3000); // Hide after 3 seconds
+        }
+
+        function showLoginFailure() {
+            loginStatus.classList.add('login-failure');
+            statusIcon.classList.add('fa-times-circle');
+            statusMessage.textContent = 'Login Failed';
+            setTimeout(() => hideLoginStatus(), 3000); // Hide after 3 seconds
+        }
+
+        function hideLoginStatus() {
+            loginStatus.classList.remove('login-success', 'login-failure');
+            statusIcon.className = 'fas'; // Reset icon
+            statusMessage.textContent = '';
+        }
+
+
+    </script> -->
+
+</body>
+
+</html>
