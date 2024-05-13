@@ -1,0 +1,7 @@
+![Screenshot (302)](https://github.com/harshita1523/Attendify/assets/113065395/4b18532b-1296-4ba1-a689-32ac45e220f6)
+![Screenshot (300)](https://github.com/harshita1523/Attendify/assets/113065395/8fae1bf7-c96f-4f94-9a70-522539d3cf6c)
+![Screenshot (301)](https://github.com/harshita1523/Attendify/assets/113065395/d6448b7f-59a5-4c23-8ad8-0b291f8487c8)
+![Screenshot (299)](https://github.com/harshita1523/Attendify/assets/113065395/4be1359a-e01c-4a29-ab27-1d09135187cc)
+![Screenshot (298)](https://github.com/harshita1523/Attendify/assets/113065395/653430e8-8cbb-472b-8e09-9398ae61dc35)
+![Screenshot (307)](https://github.com/harshita1523/Attendify/assets/113065395/642b7e85-ad93-4d21-b8ea-6449e3cc50c2)
+![Screenshot (304)](https://github.com/harshita1523/Attendify/assets/113065395/90e4bb77-cb71-422d-8260-40f9566c632d)
